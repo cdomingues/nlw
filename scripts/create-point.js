@@ -58,6 +58,10 @@ const itemsToCollect= document.querySelectorAll(".itens-grid li")
 for (const item of itemsToCollect){
     item.addEventListener("click",handleSelectedItem) 
 }
+const collectedItems = document.querySelector("input[name=items]")
+//
+let selectedItems = []
+
 
 function handleSelectedItem(event){
     
@@ -67,6 +71,32 @@ function handleSelectedItem(event){
     itemLi.classList.toggle("selected") 
     
     const itemId = itemLi.dataset.id
+// verificar se existem itens selecionados
+//pegar itens selecionados
+
+const alreadySelected  = selectedItems.findIndex( item=>{
+    const itemFound = item == itemId //isso será true ou false
+    return itemFound
+} )
+
+
+//se já estiver selecionado tirar da seleção
+if(alreadySelected >=0){
+     const filteredItems = selectedItems.filter(item =>{
+         const itemIsDiferent = item !=itemId
+         return itemIsDiferent
+     })
+     selectedItems = filteredItems
+} else{
+    //se não estiver selecionado, adicionar a seleção
+    selectedItems.push(itemId)
+}
+console.log(selectedItems)
+collectedItems.value = selectedItems
+
+
+//atualizar o campo escondido com os itens selecionados
+
 
     
 }

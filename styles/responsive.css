@@ -17,7 +17,9 @@
         align-items: center;
         margin-top:10px;
     }
-    
+    #page-search-results .cards{
+        grid-template-columns: 1fr;
+    }
 }
 
 @media(min-width: 1700px){
